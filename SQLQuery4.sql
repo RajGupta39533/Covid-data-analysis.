@@ -2,6 +2,23 @@
 Covid 19 Data Exploration 
 Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
 
+Query Processed in SQL:
+from
+where
+groupby
+having
+select
+order
+
+If we want to put condition on alias in SQL copy the parameter itself and use it in where and having by
+Example: 
+
+Select Location, Population, MAX(total_cases) as HighestInfectionCount,  Max((total_cases/population))*100 as PercentPopulationInfected
+From project..Coviddeaths
+Group by Location,population
+having (Max((total_cases/population))*100)>10
+order by PercentPopulationInfected
+
 */
 
 Select Location, date, total_cases, new_cases, total_deaths, population from Coviddeaths order by 1,2;
@@ -53,7 +70,6 @@ order by TotalDeathCount desc
 
 Select continent, MAX(cast(Total_deaths as int)) as TotalDeathCount
 From CovidDeaths
---Where location like '%states%'
 Where continent is not null 
 Group by continent
 order by TotalDeathCount desc
